@@ -41,12 +41,18 @@ Output is written to `site/` (gitignored).
 
 ## Deploy to GitHub Pages
 
-1. Push this repo to GitHub (e.g. `github.com/vuhongdoan/vuhongdoan.com`)
-2. In **Settings → Pages**, set source to **GitHub Actions**
-3. Push to `main` — the workflow builds and deploys automatically
-4. Add DNS for `vuhongdoan.com`:
-   - `A` records → GitHub Pages IPs (see [GitHub docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site))
-   - or `CNAME` → `<user>.github.io`
+1. Push this repo to GitHub — live at [github.com/codeaholicguy/vuhongdoan.com](https://github.com/codeaholicguy/vuhongdoan.com)
+2. GitHub Actions deploy is enabled (Settings → Pages → **GitHub Actions**)
+3. **Update DNS** for `vuhongdoan.com` (currently still pointing at Adobe Portfolio):
+   - Remove existing `A` / `CNAME` records for the domain
+   - Add GitHub Pages `A` records:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+   - Or add `CNAME` → `codeaholicguy.github.io`
+   - Optional: `www` → `codeaholicguy.github.io`
+4. In GitHub repo **Settings → Pages**, confirm custom domain `vuhongdoan.com` shows as verified (HTTPS may take up to 24h)
 
 The build writes a `CNAME` file with `vuhongdoan.com`.
 
