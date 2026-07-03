@@ -1,0 +1,7 @@
+site/
+content/
+public/images/
+.DS_Store
+node_modules/
+.env
+.env.local

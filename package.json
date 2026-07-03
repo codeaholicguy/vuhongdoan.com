@@ -1,0 +1,12 @@
+{
+  "name": "vuhongdoan.com",
+  "private": true,
+  "description": "Vu-Hong Doan portfolio — static site for GitHub Pages",
+  "scripts": {
+    "migrate": "python3 scripts/migrate.py",
+    "build": "python3 scripts/build.py",
+    "prebuild": "npm run migrate",
+    "serve": "npm run build && python3 -m http.server 8080 --directory site",
+    "hash-password": "node -e \"const c=require('crypto');const p=process.argv[1];if(!p){console.error('Usage: npm run hash-password -- YOUR_PASSWORD');process.exit(1)};console.log(c.createHash('sha256').update(p).digest('hex'))\""
+  }
+}

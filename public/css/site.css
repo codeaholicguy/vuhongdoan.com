@@ -1,0 +1,26 @@
+/* Overrides: Adobe Typekit → Google Fonts, no Adobe JS */
+html {
+  font-family: "Source Sans 3", "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, .title, .gallery-title a, .masthead-text h1 {
+  font-family: "Libre Baskerville", Georgia, serif;
+}
+
+body {
+  opacity: 1 !important;
+}
+
+.transition-enabled,
+.transition-in,
+.transition-out {
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+.cover__img,
+.project-module img,
+.page-content img {
+  max-width: 100%;
+  height: auto;
+}
