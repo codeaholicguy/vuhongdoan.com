@@ -68,7 +68,15 @@ def download_one(asset_id: str, url: str) -> tuple[str, bool, str]:
 def local_image_path(asset_id: str, url: str) -> str:
     ext_match = re.search(r"\.(png|jpe?g|gif|webp)", url, re.I)
     suffix = (ext_match.group(1).lower() if ext_match else "png").replace("jpeg", "jpg")
-    return f"/images/{asset_id}.{suffix}"
+    return f"images/{asset_id}.{suffix}"
+
+
+def fix_internal_links(html: str) -> str:
+    for slug in PAGES:
+        if slug == "home":
+            continue
+        html = re.sub(rf'href="/{re.escape(slug)}/?"', f'href="{slug}/"', html)
+    return html
 
 
 def replace_cdn_urls(html: str, best_urls: dict[str, str]) -> str:
@@ -121,7 +129,9 @@ def main() -> None:
     for slug, path in PAGES.items():
         if not path.exists():
             continue
-        main_html = replace_cdn_urls(extract_main(path.read_text()), best_urls)
+        main_html = fix_internal_links(
+            replace_cdn_urls(extract_main(path.read_text()), best_urls)
+        )
         (CONTENT / f"{slug}.html").write_text(main_html)
         meta[slug] = {"title": extract_title(path.read_text())}
 

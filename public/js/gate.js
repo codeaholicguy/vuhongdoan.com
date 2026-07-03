@@ -6,7 +6,7 @@
   var button = form.querySelector(".js-btn-submit");
   var error = document.querySelector(".js-gate-error");
   var params = new URLSearchParams(window.location.search);
-  var returnTo = params.get("r") || "/work/";
+  var returnTo = params.get("r") || "work/";
 
   if (sessionStorage.getItem(key) === "1") {
     window.location.replace(returnTo);

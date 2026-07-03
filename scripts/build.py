@@ -12,26 +12,39 @@ BUILD = ROOT / "site"
 PUBLIC = ROOT / "public"
 
 NAV = [
-    ("Selected works", "/work/"),
-    ("Klarna - Live Shopping", "/klarna-live-shopping/"),
-    ("Klarna - Desktop Store App", "/klarna-desktop-store-app/"),
-    ("Tiki - Rewards Program", "/tiki-rewards-program/"),
-    ("Tiki - Gamify users journey", "/gamify-users-journey-on-tiki/"),
-    ("Aeho - Product Information Management (PIM)", "/aeho-product-information-management-solution/"),
+    ("Selected works", "work/"),
+    ("Klarna - Live Shopping", "klarna-live-shopping/"),
+    ("Klarna - Desktop Store App", "klarna-desktop-store-app/"),
+    ("Tiki - Rewards Program", "tiki-rewards-program/"),
+    ("Tiki - Gamify users journey", "gamify-users-journey-on-tiki/"),
+    ("Aeho - Product Information Management (PIM)", "aeho-product-information-management-solution/"),
 ]
 
 SLUGS = {
-    "home": "/",
-    "work": "/work/",
-    "klarna-live-shopping": "/klarna-live-shopping/",
-    "klarna-desktop-store-app": "/klarna-desktop-store-app/",
-    "tiki-rewards-program": "/tiki-rewards-program/",
-    "gamify-users-journey-on-tiki": "/gamify-users-journey-on-tiki/",
-    "aeho-product-information-management-solution": "/aeho-product-information-management-solution/",
+    "home": "./",
+    "work": "work/",
+    "klarna-live-shopping": "klarna-live-shopping/",
+    "klarna-desktop-store-app": "klarna-desktop-store-app/",
+    "tiki-rewards-program": "tiki-rewards-program/",
+    "gamify-users-journey-on-tiki": "gamify-users-journey-on-tiki/",
+    "aeho-product-information-management-solution": "aeho-product-information-management-solution/",
 }
 
-LOGO = "/images/9f8812f1-30f1-489e-b5e8-129e7b6a1ba1.png"
-FAVICON = "/images/50f23401-291a-41b2-9212-2a3412ec5a14.png"
+LOGO = "images/9f8812f1-30f1-489e-b5e8-129e7b6a1ba1.png"
+FAVICON = "images/50f23401-291a-41b2-9212-2a3412ec5a14.png"
+
+BASE_TAG = """<script>
+(function () {
+  var base = "/";
+  if (location.hostname.endsWith(".github.io")) {
+    var repo = location.pathname.split("/").filter(Boolean)[0];
+    if (repo) base = "/" + repo + "/";
+  }
+  var el = document.createElement("base");
+  el.href = base;
+  document.head.insertBefore(el, document.head.firstChild);
+})();
+</script>"""
 
 SOCIAL_SVG = {
     "linkedin": """<svg viewBox="0 0 30 24" class="icon" aria-hidden="true"><path d="M19.6,19v-5.8c0-1.4-0.5-2.4-1.7-2.4c-1,0-1.5,0.7-1.8,1.3C16,12.3,16,12.6,16,13v6h-3.4c0,0,0.1-9.8,0-10.8H16v1.5h0v0C16.4,9,17.2,7.9,19,7.9c2.3,0,4,1.5,4,4.9V19H19.6z M8.9,6.7C7.7,6.7,7,5.9,7,4.9C7,3.8,7.8,3,8.9,3s1.9,0.8,1.9,1.9C10.9,5.9,10.1,6.7,8.9,6.7z M10.6,19H7.2V8.2h3.4V19z"/></svg>""",
@@ -58,15 +71,16 @@ def shell(title: str, active_href: str, main_body: str) -> str:
   <meta name="description" content="Senior Product Designer" />
   <meta name="robots" content="noindex" />
   <title>{title}</title>
+  {BASE_TAG}
   <link rel="icon" href="{FAVICON}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="/css/theme.css" />
-  <link rel="stylesheet" href="/css/site.css" />
-  <script src="/js/auth.js" defer></script>
-  <script src="/js/site.js" defer></script>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/site.css" />
+  <script src="js/auth.js" defer></script>
+  <script src="js/site.js" defer></script>
 </head>
 <body class="link-transition">
   <div class="js-responsive-nav">
@@ -96,7 +110,7 @@ def shell(title: str, active_href: str, main_body: str) -> str:
             <div class="logo-wrap">
               <div class="logo logo-image">
                 <div class="image-normal image-link">
-                  <a href="/"><img src="{LOGO}" alt="Vu-Hong Doan" /></a>
+                  <a href="./"><img src="{LOGO}" alt="Vu-Hong Doan" /></a>
                 </div>
               </div>
             </div>
@@ -133,10 +147,11 @@ def gate_page() -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <title>Password Protected Page</title>
-  <link rel="icon" href="/images/50f23401-291a-41b2-9212-2a3412ec5a14.png" />
-  <link rel="stylesheet" href="/css/gate.css" />
-  <script src="/js/config.js"></script>
-  <script src="/js/gate.js" defer></script>
+  {BASE_TAG}
+  <link rel="icon" href="images/50f23401-291a-41b2-9212-2a3412ec5a14.png" />
+  <link rel="stylesheet" href="css/gate.css" />
+  <script src="js/config.js"></script>
+  <script src="js/gate.js" defer></script>
 </head>
 <body>
   <div class="password-form-content content">
@@ -163,7 +178,7 @@ def main() -> None:
     BUILD.mkdir()
 
     work_body = (CONTENT / "work.html").read_text()
-    work_page = shell(meta["work"]["title"], "/work/", work_body)
+    work_page = shell(meta["work"]["title"], "work/", work_body)
     write_page(BUILD / "index.html", work_page)
     write_page(BUILD / "work" / "index.html", work_page)
 

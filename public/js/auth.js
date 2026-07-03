@@ -9,5 +9,5 @@
   var redirect = encodeURIComponent(
     window.location.pathname + window.location.search + window.location.hash
   );
-  window.location.replace("/gate.html?r=" + redirect);
+  window.location.replace("gate.html?r=" + redirect);
 })();
